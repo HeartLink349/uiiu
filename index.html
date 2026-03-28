@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>عالم روح قلبي الخاص ❤️</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-pink: #ff2d7d;
+            --light-pink: #ff85b3;
+            --dark-pink: #bc105d;
+            --soft-bg: #fff0f6;
+            --gold: #d4af37;
+            --glass: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; font-family: "Segoe UI", Roboto, sans-serif; }
+        
+        body { 
+            margin: 0; 
+            background: radial-gradient(circle at center, var(--soft-bg) 0%, #ffdae9 100%);
+            color: var(--dark-pink);
+            overflow: hidden; 
+        }
+
+        .hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+        .heart-particle { position: absolute; color: var(--primary-pink); opacity: 0.3; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+        #page-1 {
+            height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: fixed; width: 100%; z-index: 9999; transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            background: inherit;
+        }
+        #page-1.hide { transform: scale(0.8) translateY(-100vh); opacity: 0; pointer-events: none; }
+
+        .header-text { color: var(--dark-pink); font-size: 24px; font-weight: 900; margin-bottom: 40px; text-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .lock-container { position: relative; width: 340px; height: 400px; perspective: 1000px; }
+        
+        .shackle {
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            width: 170px; height: 200px; border: 25px solid #ff7eb3;
+            border-bottom: none; border-radius: 85px 85px 0 0;
+            background: linear-gradient(135deg, #ffb3d9 0%, #ff7eb3 50%, #ff4d8d 100%);
+            box-shadow: inset 0 10px 20px rgba(255,255,255,0.8), 0 10px 30px rgba(214, 51, 132, 0.2);
+            z-index: 1; transition: 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .heart {
+            position: absolute; bottom: 0; width: 340px; height: 300px;
+            background: radial-gradient(circle at 30% 30%, #ff6fa5 0%, #ff2d7d 45%, #d61c5f 100%);
+            clip-path: path('M170 300 L150 280 C65 215 0 170 0 95 C0 45 40 0 95 0 C125 0 155 15 170 40 C185 15 215 0 245 0 C300 0 340 45 340 95 C340 170 275 215 190 280 Z');
+            z-index: 2; box-shadow: 0 30px 60px rgba(188, 16, 93, 0.4);
+            animation: heartbeat 2s ease-in-out infinite; display: flex; align-items: center; justify-content: center;
+        }
+        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+
+        .capsule-row { position: absolute; bottom: 110px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 3; direction: ltr; }
+        .capsule {
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(15px) saturate(150%);
+            width: 80px; height: 140px; border-radius: 40px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+            padding: 10px 0; border: 1px solid rgba(255,255,255,0.4); box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .val-box { background: #ffffff; width: 65px; height: 45px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 900; color: var(--dark-pink); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .btn-arrow { width: 38px; height: 38px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-pink); font-size: 18px; cursor: pointer; }
+        .unlock-btn { margin-top: 40px; background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink)); color: #fff; border: none; padding: 16px 50px; border-radius: 50px; font-weight: 900; font-size: 18px; cursor: pointer; box-shadow: 0 15px 30px rgba(214, 51, 132, 0.4); }
+
+        #page-2 { display: none; opacity: 0; height: 100vh; overflow-y: auto; position: relative; z-index: 5; transition: 1s; padding-top: 20px; }
+        .container { padding: 30px 20px; max-width: 500px; margin: 0 auto; }
+        
+        /* تعديل العنوان لظهور الإيموجي بوضوح */
+        .main-title { font-weight: 900; text-align: center; font-size: 32px; color: var(--dark-pink); }
+        .title-gradient { background: linear-gradient(45deg, var(--dark-pink), var(--primary-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .music-bar { background: var(--glass); padding: 18px; border-radius: 30px; border: 1px solid var(--glass-border); display: flex; align-items: center; gap: 15px; margin: 25px 0; backdrop-filter: blur(20px); }
+        .play-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; }
+        .glass-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 35px; margin-bottom: 35px; overflow: hidden; opacity: 0; transform: translateY(40px); transition: 1s; }
+        .glass-card.show { opacity: 1; transform: translateY(0); }
+        .glass-card img { width: 100%; display: block; }
+        .note-card { min-width: 150px; height: 150px; position: relative; transition: 0.8s; transform-style: preserve-3d; cursor: pointer; }
+        .note-card.flipped { transform: rotateY(180deg); }
+        .note-front, .note-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 20px; border-radius: 30px; border: 1px solid var(--glass-border); }
+        .note-front { background: var(--glass); color: var(--primary-pink); font-size: 35px; }
+        .note-back { background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink)); transform: rotateY(180deg); font-size: 14px; font-weight: 700; text-align: center; color: white; }
+        .promise-item { background: var(--glass); border: 1px solid var(--glass-border); padding: 15px 20px; border-radius: 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; color: var(--dark-pink); font-weight: 600; }
+        .promise-item i { color: var(--primary-pink); }
+        .btn-outline { background: white; border: 2px solid var(--primary-pink); color: var(--primary-pink); padding: 15px 35px; border-radius: 50px; cursor: pointer; margin-top: 30px; font-weight: 800; }
+
+        #page-3 { display: none; opacity: 0; position: fixed; inset: 0; z-index: 10000; background: var(--soft-bg); transition: 1s; overflow-y: auto; }
+        .secret-content { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center; }
+        .floating-message { background: white; border: 2px solid var(--primary-pink); padding: 45px 30px; border-radius: 50px; box-shadow: 0 20px 50px rgba(214, 51, 132, 0.2); max-width: 450px; animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+    </style>
+</head>
+<body>
+
+    <div class="hearts-bg" id="hearts-container"></div>
+
+    <section id="page-1">
+        <div class="header-text">ع. ع. ح. ن</div>
+        <div class="lock-container">
+            <div class="shackle" id="shackle"></div>
+            <div class="heart"><div class="heart-shine"></div></div>
+            <div class="capsule-row">
+                <div class="capsule">
+                    <div class="btn-arrow" onclick="change('y', 1)"><i class="fa-solid fa-chevron-up"></i></div>
+                    <div class="val-box" id="y">2000</div>
+                    <div class="btn-arrow" onclick="change('y', -1)"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="capsule">
+                    <div class="btn-arrow" onclick="change('m', 1)"><i class="fa-solid fa-chevron-up"></i></div>
+                    <div class="val-box" id="m">00</div>
+                    <div class="btn-arrow" onclick="change('m', -1)"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+                <div class="capsule">
+                    <div class="btn-arrow" onclick="change('d', 1)"><i class="fa-solid fa-chevron-up"></i></div>
+                    <div class="val-box" id="d">00</div>
+                    <div class="btn-arrow" onclick="change('d', -1)"><i class="fa-solid fa-chevron-down"></i></div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:30px; color: var(--dark-pink); font-weight: 700;">علي عهدنا حتي نلتقي</div>
+        <button class="unlock-btn" onclick="openLock()">Unlock Now ❤️</button>
+    </section>
+
+    <section id="page-2">
+        <div class="container">
+            <header>
+                <h2 class="main-title"><span class="title-gradient">روح قلبي</span>❤️🙈</h2>
+                <p style="text-align:center; opacity:0.8; font-weight:600;">كل لحظة معاكي هي عمر جديد</p>
+            </header>
+
+            <div class="music-bar">
+                <div class="play-icon" onclick="toggleMusic()"><i id="pIcon" class="fa-solid fa-play"></i></div>
+                <div style="flex:1">
+                    <div style="font-size:16px; font-weight:800; color:var(--dark-pink)">أجمل صوت</div>
+                    <div style="font-size:12px; opacity:0.7;">حاجة ليكي 🎵</div>
+                </div>
+                <audio id="loveSong" loop src="https://j.top4top.io/m_37385jq011.mp4"></audio>
+            </div>
+
+            <div class="promises-section" style="margin: 30px 0;">
+                <div class="promise-item"><i class="fa-solid fa-hand-holding-heart"></i> <span>هفضل سندك في كل وقت</span></div>
+                <div class="promise-item"><i class="fa-solid fa-shield-halved"></i> <span>هكون دايماً أمانك وضحكتك</span></div>
+                <div class="promise-item"><i class="fa-solid fa-infinity"></i> <span>حبنا ملوش نهاية.. وعد</span></div>
+            </div>
+
+            <p style="text-align:center; font-weight:900; color:var(--primary-pink); margin-bottom:10px;">إضغطي هنا ✨</p>
+            <div style="display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px;">
+                <div class="note-card" onclick="this.classList.toggle('flipped')">
+                    <div class="note-front"><i class="fa-solid fa-envelope"></i></div>
+                    <div class="note-back">إنتي أجمل نعمة في حياتي ❤️</div>
+                </div>
+                <div class="note-card" onclick="this.classList.toggle('flipped')">
+                    <div class="note-front"><i class="fa-solid fa-star"></i></div>
+                    <div class="note-back">وجودك بيخلي الدنيا منورة ✨</div>
+                </div>
+                <div class="note-card" onclick="this.classList.toggle('flipped')">
+                    <div class="note-front"><i class="fa-solid fa-crown"></i></div>
+                    <div class="note-back">ملكة قلبي للأبد 💍</div>
+                </div>
+            </div>
+
+            <div class="gallery">
+                <div class="glass-card"><img src="https://i.top4top.io/p_3738n6kdc1.jpeg"><div style="padding:20px; text-align:center; font-weight: 700;">أحلى صدفة في عمري ❤️</div></div>
+            </div>
+
+            <div style="text-align:center; padding-bottom:100px;">
+                <button class="btn-outline" onclick="goToPage3()">في حاجة أخيرة ليكي.. 🎁</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-3">
+        <div class="secret-content">
+            <div class="floating-message animate__animated animate__fadeInUp">
+                <i class="fa-solid fa-heart" style="color:var(--primary-pink); font-size:45px; margin-bottom:25px;"></i>
+                <h2 style="color:var(--dark-pink); margin-bottom:20px; font-size: 24px;">كل عام وانتي بخير يا عمري ❤️</h2>
+                <div style="font-size:15px; line-height:1.7; color:#555; text-align: right; font-weight:600;">
+                    كل عام وانتي بخير يا عمري، وكل عام وانتي الضحكة اللي تخلّي الدنيا تحلى بعيني 😍🫂<br>
+                    والله إني أحمد ربي كل يوم إنك بحياتي، يا أجمل صدفة صارت لي<br><br>
+                    يا قلبي، لو أوصف لك كيفف أحبك ما تكفي كل الكلام…<br>
+                    انتي سعادتي، وراحتي، وكل دنيتي 💕<br><br>
+                    ربي يحفظك لي، وما يحرمني منك ولا من صوتك ولا من ضحكتك 🤍<br>
+                    وكل سنة وأنا أحبك أكثر من اللي قبلها<br><br>
+                    عيد ميلاد سعيد يا عمري 🎂❤️<br><br>
+                    كل عام وانتي حقي ميه عام ي احلا حاجه شفته بحياتي أنا فعلن ماعرف كيف أوصلك او كيف اوصلك شعوري او حبي لك انتي حرفيا ملكتيني وقفتي معي ب أصعب أوقاتي و أصعب أوقات كنتي معي ب اضيق الأوقات بحيث كنت محتاج الكل ولاقيك انتي ي سلائي معي كنتي سندي وختي وحبيبتي ودنيتي الناس لهم جنتهم ف الاخره وانا الله جابك لي تعرفييي معناء انتي شي معجزه انتي شي حرفيا ربي مدري كيف أوصف او اعبر لك عن شعوري لك حرفيا بذات اليوم هذا احلا وجمل يوم عشان ليهههه عشان انجبت احلا عمه احلا نونو احلا بنت ف دنيا جعل ايامك كله صحه وعافيه وماتشوفي شر <br><br>
+                    I love you كثييييييييير ي احلا سلائي ب دنيا 🌚🫶🏻
+                </div>
+                <button onclick="location.reload()" style="background:none; border:none; color:var(--dark-pink); margin-top:35px; font-size:13px; text-decoration:underline; cursor:pointer; font-weight: 700;">العودة للبداية</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // الباسورد المطلوب للفتح
+        const CORRECT = { y: 2009, m: 3, d: 27 };
+
+        function change(id, delta) {
+            let el = document.getElementById(id);
+            let v = parseInt(el.innerText);
+            v += delta;
+            if(id==='y' && v < 1990) v = 1990;
+            if(id==='m') { if(v>12) v=0; if(v<0) v=12; }
+            if(id==='d') { if(v>31) v=0; if(v<0) v=31; }
+            el.innerText = (id==='y') ? v : String(v).padStart(2, '0');
+        }
+
+        function openLock() {
+            const y = parseInt(document.getElementById('y').innerText);
+            const m = parseInt(document.getElementById('m').innerText);
+            const d = parseInt(document.getElementById('d').innerText);
+
+            if(y === CORRECT.y && m === CORRECT.m && d === CORRECT.d) {
+                document.getElementById('shackle').style.transform = "translateX(-50%) translateY(-50px) rotate(-15deg)";
+                setTimeout(() => {
+                    document.getElementById('page-1').classList.add('hide');
+                    document.getElementById('page-2').style.display = 'block';
+                    document.body.style.overflow = 'auto';
+                    setTimeout(() => { document.getElementById('page-2').style.opacity = '1'; checkScroll(); }, 50);
+                    toggleMusic();
+                    createHearts();
+                }, 800);
+            } else {
+                alert("التاريخ غلط يا روحي.. ركزي شوية ❤️");
+            }
+        }
+
+        function goToPage3() {
+            document.getElementById('page-3').style.display = 'block';
+            document.body.style.overflow = 'auto';
+            window.scrollTo(0,0);
+            setTimeout(() => { document.getElementById('page-3').style.opacity = '1'; }, 50);
+        }
+
+        function toggleMusic() {
+            const a = document.getElementById('loveSong');
+            const i = document.getElementById('pIcon');
+            if(a.paused) { a.play(); i.className = 'fa-solid fa-pause'; }
+            else { a.pause(); i.className = 'fa-solid fa-play'; }
+        }
+
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            setInterval(() => {
+                const heart = document.createElement('i');
+                heart.className = 'fa-solid fa-heart heart-particle';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.fontSize = (Math.random() * 10 + 10) + 'px';
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            }, 300);
+        }
+
+        function checkScroll() {
+            document.querySelectorAll('.glass-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if(rect.top < window.innerHeight - 50) { card.classList.add('show'); }
+            });
+        }
+        document.getElementById('page-2').onscroll = checkScroll;
+    </script>
+</body>
+</html>
